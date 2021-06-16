@@ -38,8 +38,10 @@ public class TaskController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
-    public TaskDto updateTask(TaskDto taskDto) {
-        return new TaskDto(1L, "Edited test title", "Test content");
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
+        Task task = taskMapper.mapToTask(taskDto);
+        Task savedTask = service.saveTask(task);
+        return taskMapper.mapToTaskDto(savedTask);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes =
