@@ -21,6 +21,7 @@ public class TaskController {
     private final DbService service;
     private final TaskMapper taskMapper;
 
+
     @RequestMapping(method = RequestMethod.GET, value = "getTasks")
     public List<TaskDto> getTasks() {
         List<Task> tasks = service.getAllTasks();
