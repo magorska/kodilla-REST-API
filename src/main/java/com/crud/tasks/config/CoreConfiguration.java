@@ -9,6 +9,7 @@ public class CoreConfiguration {
 
     @Bean
     public RestTemplate restTemplate() {
+
         return new RestTemplate();
     }
 
