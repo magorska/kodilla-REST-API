@@ -94,6 +94,10 @@ class TrelloClientTest {
     void shouldReturnEmptyList() throws URISyntaxException {
 
         //Given
+        when(trelloConfig.getTrelloApiEndpoint()).thenReturn("http://test.com");
+        when(trelloConfig.getTrelloAppKey()).thenReturn("test");
+        when(trelloConfig.getTrelloToken()).thenReturn("test");
+        when(trelloConfig.getTrelloAppUsername()).thenReturn("test");
         TrelloBoardDto[] trelloBoardDto = null;
         URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoardDto);
