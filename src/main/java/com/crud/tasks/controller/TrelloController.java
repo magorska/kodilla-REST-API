@@ -1,11 +1,13 @@
 package com.crud.tasks.controller;
 
-import com.crud.tasks.domain.CreatedTrelloCard;
+import com.crud.tasks.domain.CreatedTrelloCardDto;
 import com.crud.tasks.domain.TrelloBoardDto;
 import com.crud.tasks.domain.TrelloCardDto;
 import com.crud.tasks.service.TrelloService;
 import com.crud.tasks.trello.client.TrelloClient;
+import com.crud.tasks.trello.client.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,32 +18,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TrelloController {
 
-    private final TrelloClient trelloClient;
-    private final TrelloService trelloService;
+    @Autowired
+    private final TrelloFacade trelloFacade;
 
     @GetMapping("getTrelloBoards")
     public List<TrelloBoardDto> getTrelloBoards() {
-        return trelloService.fetchTrelloBoards();
+        return trelloFacade.fetchTrelloBoards();
     }
-
-//        @GetMapping("getTrelloBoards")
-//        public void getTrelloBoards() {
-//            List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
-//            trelloBoards.forEach(trelloBoardDto -> {
-//                System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName());
-//
-//                System.out.println("This board contains lists: ");
-//
-//                trelloBoardDto.getLists().forEach(trelloList -> {
-//                    System.out.println(
-//                            trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()
-//                    );
-//                });
-//
-//            });
 
     @PostMapping("createTrelloCard")
-    public CreatedTrelloCard createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return trelloService.createTrelloCard(trelloCardDto);
+    public CreatedTrelloCardDto createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
+        return trelloFacade.createCard(trelloCardDto);
     }
+
 }
