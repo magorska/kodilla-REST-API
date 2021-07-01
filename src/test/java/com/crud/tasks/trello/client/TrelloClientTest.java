@@ -99,7 +99,7 @@ class TrelloClientTest {
         when(trelloConfig.getTrelloToken()).thenReturn("test");
         when(trelloConfig.getTrelloAppUsername()).thenReturn("test");
         TrelloBoardDto[] trelloBoardDto = null;
-        URI uri = new URI("http://test.com/cards?key=test&token=test&name=Test%20task&desc=Test%20Description&pos=top&idList=test_id");
+        URI uri = new URI("http://test.com/members/test/boards?key=test&token=test&fields=name,id&lists=all");
         when(restTemplate.getForObject(uri, TrelloBoardDto[].class)).thenReturn(trelloBoardDto);
 
         //When

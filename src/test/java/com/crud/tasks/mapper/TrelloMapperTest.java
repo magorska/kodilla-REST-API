@@ -13,15 +13,13 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@RunWith(MockitoJUnitRunner.class)
 class TrelloMapperTest {
-
-    @InjectMocks
-    private TrelloMapper trelloMapper;
 
     @Test
     void testMapToBoards() {
         //Given
+        TrelloMapper trelloMapper = new TrelloMapper();
+
         TrelloListDto trelloListDto = new TrelloListDto("#01", "testTrelloList", false);
         List<TrelloListDto> trelloListDtoList = Arrays.asList(trelloListDto);
 
@@ -39,6 +37,8 @@ class TrelloMapperTest {
     @Test
     void testMapToBoardsDto() {
         //Given
+        TrelloMapper trelloMapper = new TrelloMapper();
+
         TrelloList trelloList = new TrelloList("#01", "testTrelloList", false);
         List<TrelloList> trelloListList = Arrays.asList(trelloList);
 
