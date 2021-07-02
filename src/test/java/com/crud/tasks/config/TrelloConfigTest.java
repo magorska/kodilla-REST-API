@@ -18,7 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -27,7 +26,7 @@ import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
 @WebMvcTest(TrelloController.class)
-class TrelloControllerTest {
+class TrelloConfigTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,15 +46,15 @@ class TrelloControllerTest {
                 .perform(MockMvcRequestBuilders
                         .get("/v1/trello/getTrelloBoards")
                         .contentType(MediaType.APPLICATION_JSON))
-                        // Trello board fields
-                        .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", Matchers.is("1")))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is("Test Task")))
-                        // Trello list fields
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists", Matchers.hasSize(1)))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists[0].id", Matchers.is("1")))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists[0].name", Matchers.is("Test list")))
-                        .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists[0].closed", Matchers.is(false)));
+                // Trello board fields
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].id", Matchers.is("1")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name", Matchers.is("Test Task")))
+                // Trello list fields
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists", Matchers.hasSize(1)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists[0].id", Matchers.is("1")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists[0].name", Matchers.is("Test list")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].lists[0].closed", Matchers.is(false)));
     }
 
     @Test
@@ -82,5 +81,6 @@ class TrelloControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is("Test")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.shortUrl", Matchers.is("http://test.com")));
     }
+
 
 }
