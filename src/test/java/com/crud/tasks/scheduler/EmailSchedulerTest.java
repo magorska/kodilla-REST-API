@@ -33,7 +33,7 @@ class EmailSchedulerTest {
     void testSendInformationEmail() {
 
         //Given
-        Mail mail = new Mail("test@test.com", "Test", "Test Message", null);
+        Mail mail = new Mail("test@test.com", "Tasks: Once a day email", "Currently in database you got: 1 tasks", null);
         when(adminConfig.getAdminMail()).thenReturn(mail.getMailTo());
         when(taskRepository.count()).thenReturn(1L);
 

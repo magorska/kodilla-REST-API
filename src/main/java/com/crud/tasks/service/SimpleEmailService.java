@@ -27,16 +27,16 @@ public class SimpleEmailService {
             log.error("Failed to process email sending: " + e.getMessage(), e);
         }
     }
-    public void setCc(Mail toCc) {
 
-
-    }
 
     private SimpleMailMessage createMailMessage(final Mail mail) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+        if (mail.getToCc() != null) {
+            mailMessage.setCc(mail.getToCc());
+        }
         return mailMessage;
     }
 }
