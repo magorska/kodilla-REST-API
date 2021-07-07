@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class EmailScheduler {
 
     private static final String SUBJECT = "Tasks: Once a day email";
-    private static final String task = "task";
-    private static final String tasks = "tasks";
+    private static final String TASK = "task";
+    private static final String TASKS = "tasks";
     private final SimpleEmailService simpleEmailService;
     private final TaskRepository taskRepository;
     private final AdminConfig adminConfig;
@@ -27,7 +27,7 @@ public class EmailScheduler {
                 new Mail(
                         adminConfig.getAdminMail(),
                         SUBJECT,
-                        "Currently in database you got: " + size + (size == 1 ? task : tasks),
+                        "Currently in database you got: " + size + (size == 1 ? TASK : TASKS),
                         null
                 )
         );
