@@ -133,7 +133,6 @@ public class TaskControllerTest {
                 .content(jsonContent))
                 .andExpect(status().isOk());
 
-        verify(taskMapper, times(1)).mapToTask(taskDto);
         verify(dbService, times(1)).saveTask(task);
     }
 }
