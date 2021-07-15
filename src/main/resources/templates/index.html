@@ -1,10 +1,33 @@
-<!-DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>My welcome page</title>
 </head>
 <body>
+
 <h1>First impression of my page</h1>
+
+<!--/*thymesVar id="variable" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<span th:text="${variable}"></span>
+
+<br>
+<!--/*thymesVar id="multiply_operation" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<!--/*thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<span th:text="${multiply_operation}"></span>
+<span th:text="${two} * ${two}"></span></br>
+
+<br>
+<!--/*thymesVar id="multi_add_operation" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<!--/*thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/-->
+<span th:text="${multi_add_operation}"></span>
+<span th:text="(${two} * ${two}) + ${two}"></span></br>
+
+<br>
+<!--&lt;!&ndash;/*thymesVar id="multi_add_operation" type="com.crud.tasks.controller.StaticWebPageController"*/&ndash;&gt;-->
+<!--&lt;!&ndash;/*thymesVar id="two" type="com.crud.tasks.controller.StaticWebPageController"*/&ndash;&gt;-->
+<span th:text="${sub_multi_operation}"></span>
+<span th:text="${two} - (${two} * ${two})"></span></br>
+
 </body>
 </html>
