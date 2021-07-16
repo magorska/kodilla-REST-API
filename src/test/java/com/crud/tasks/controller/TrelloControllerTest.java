@@ -48,7 +48,7 @@ class TrelloControllerTest {
         //When&Then
         mockMvc
                 .perform(MockMvcRequestBuilders
-                .get("/v1/trello/getTrelloBoards"))
+                .get("/v1/trello/boards"))
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect((ResultMatcher) jsonPath("$", hasSize(1)))
                 .andExpect((ResultMatcher) jsonPath("$[0].lists", hasSize(1)));

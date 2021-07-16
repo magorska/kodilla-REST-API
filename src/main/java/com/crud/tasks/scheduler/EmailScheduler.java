@@ -32,4 +32,18 @@ public class EmailScheduler {
                 )
         );
     }
+
+    @Scheduled(cron = "0 0 08 * * *")
+    public void sendDailyInfoEmail() {
+        long size = taskRepository.count();
+        simpleEmailService.sendMessage(
+                new Mail(
+                        adminConfig.getAdminMail(),
+                        SUBJECT,
+                        "Currently in database you got: " + size + (size == 1 ? TASK : TASKS),
+                        null
+                ),
+                true
+        );
+    }
 }
