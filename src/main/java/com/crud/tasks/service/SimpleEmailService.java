@@ -12,7 +12,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
-import static java.util.Optional.ofNullable;
 
 @Slf4j
 @Service
@@ -52,5 +51,26 @@ public class SimpleEmailService {
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()));
         return mailMessage;
+    }
+
+    private SimpleMailMessage createDailyMailMessage(final Mail mail) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mailCreatorService.dailyCountOfTasksEmail(mail.getMessage()));
+        return mailMessage;
+    }
+
+    public void sendMessage(final Mail mail, boolean daily) {
+        log.info("Starting email preparation...");
+        try {
+            if (daily) {
+                javaMailSender.send(createDailyMailMessage(mail));
+            } else {
+                javaMailSender.send(createMailMessage(mail));
+            }
+        } catch (Exception e) {
+            log.error("Failed to process email sending: " + e.getMessage(), e);
+        }
     }
 }
