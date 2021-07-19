@@ -3,6 +3,7 @@ package com.crud.tasks.service;
 import com.crud.tasks.domain.Mail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -19,16 +20,14 @@ import org.springframework.stereotype.Service;
 public class SimpleEmailService {
 
     private final JavaMailSender javaMailSender;
-    private Logger LOGGER;
+    private final MailCreatorService mailCreatorService;
 
-    @Autowired
-    private MailCreatorService mailCreatorService;
-
+    @Deprecated
     public void send(final Mail mail) {
         log.info("Starting email preparation...");
         try {
             javaMailSender.send(createMimeMessage(mail));
-            LOGGER.info("Email has been sent.");
+            log.info("Email has been sent.");
         } catch (MailException e) {
             log.error("Failed to process email sending: " + e.getMessage(), e);
         }

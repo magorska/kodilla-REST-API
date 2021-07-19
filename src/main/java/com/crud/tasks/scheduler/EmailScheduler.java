@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 public class EmailScheduler {
 
     private static final String SUBJECT = "Tasks: Once a day email";
-    private static final String TASK = "task";
-    private static final String TASKS = "tasks";
+    private static final String TASK = " task";
+    private static final String TASKS = " tasks";
     private final SimpleEmailService simpleEmailService;
     private final TaskRepository taskRepository;
     private final AdminConfig adminConfig;
