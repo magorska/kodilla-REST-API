@@ -22,7 +22,8 @@ import java.util.List;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+//import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 
 @SpringJUnitWebConfig
 @WebMvcTest(TrelloController.class)
@@ -50,8 +51,8 @@ class TrelloControllerTest {
                 .perform(MockMvcRequestBuilders
                 .get("/v1/trello/boards"))
                 .andExpect(MockMvcResultMatchers.status().is(200))
-                .andExpect((ResultMatcher) jsonPath("$", hasSize(1)))
-                .andExpect((ResultMatcher) jsonPath("$[0].lists", hasSize(1)));
+                .andExpect( jsonPath("$", hasSize(1)))
+                .andExpect( jsonPath("$[0].lists", hasSize(1)));
     }
 
 }
